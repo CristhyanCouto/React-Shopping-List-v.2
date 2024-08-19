@@ -1,12 +1,11 @@
-import React from 'react'
 import NavBar from '../components/navBar'
 import ItemCardList from '../components/itemCardList'
 
-export default function Home(props: {refreshCounter: number}) {
+export default function Home() {
   return (
-    <div>
+    <div className='p-5'>
         <NavBar />
-        <ItemCardList refreshCounter={0} />
+        <ItemCardList />
     </div>
   )
 }

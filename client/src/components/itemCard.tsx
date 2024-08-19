@@ -8,7 +8,6 @@ type ItemCardProps = {
     description: string;
     link: string;
     group: string;
-    refreshCounter: number;
 };
 
 function ItemCard (itemCardProps: ItemCardProps) {
@@ -42,7 +41,7 @@ function ItemCard (itemCardProps: ItemCardProps) {
                     <a target="_blank" rel="noreferrer" href={itemCardProps.link}>
                     <button className="bg-green-500 rounded-lg w-20 h-10">Link</button>
                     </a>
-                    <DeleteItemButton id={itemCardProps.id} refreshCounter={0} />
+                    <DeleteItemButton id={itemCardProps.id} />
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ItemCard from "./itemCard";
 
-function App(props: {refreshCounter: number}) {
+function App() {
 
   const [data, setData] = useState<any[]>([]);
   const [search, setSearch] = useState<string>("");
@@ -73,7 +73,6 @@ function App(props: {refreshCounter: number}) {
                 description={item.description}
                 link={item.link}
                 group={item.group}
-                refreshCounter={props.refreshCounter}
                 />
                 ))}
             </div>

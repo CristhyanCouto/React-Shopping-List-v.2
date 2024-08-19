@@ -11,7 +11,7 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<Home refreshCounter={0} />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </Router>
   </React.StrictMode>

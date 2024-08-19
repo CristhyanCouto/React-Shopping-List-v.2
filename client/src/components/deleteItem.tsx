@@ -6,13 +6,9 @@ type propType = {
     onClose: () => void;
     children: React.ReactNode;
     id : number;
-    refreshCounter: number;
 }
 
-const DeleteItem: React.FC<propType> = ({ open, onClose, children, id, refreshCounter }) => {
-
-    const [refreshCounterState, setRefreshCounterState] = React.useState<number>(0);
-    refreshCounter = refreshCounterState;
+const DeleteItem: React.FC<propType> = ({ open, onClose, children, id }) => {
 
     const deleteItem = (id: number) => {
         axios.delete(`http://localhost:3001/item/${id}`, {
@@ -20,7 +16,6 @@ const DeleteItem: React.FC<propType> = ({ open, onClose, children, id, refreshCo
         })
         .then(() => {
             alert('Item deleted')
-            setRefreshCounterState(refreshCounter + 1)
         }
         )
     }
