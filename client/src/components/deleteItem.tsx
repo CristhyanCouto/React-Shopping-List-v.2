@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import { GlobalContext } from '../contexts/Home/CHome';
 
 type propType = {
     open: boolean;
@@ -10,14 +11,20 @@ type propType = {
 
 const DeleteItem: React.FC<propType> = ({ open, onClose, children, id }) => {
 
+    const refreshContext = React.useContext(GlobalContext);
+    
     const deleteItem = (id: number) => {
         axios.delete(`http://localhost:3001/item/${id}`, {
             method: 'DELETE',
         })
         .then(() => {
             alert('Item deleted')
-        }
-        )
+            refreshContext.setContext((prevContext: { refreshCounter: number; }) => ({
+                ...prevContext,
+                refreshCounter: prevContext.refreshCounter + 1,
+              }));            
+            onClose()
+        })
     }
 
   return (

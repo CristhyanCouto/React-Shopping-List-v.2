@@ -56,7 +56,7 @@ function App() {
                 <option value="Video-Games">Video-Games</option>
             </select>
         </div>
-        <div className="flex justify-center items-center min-h-screen">
+        <div className="flex justify-center items-center">
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
             {data.filter((item) => {
                 return search.toLocaleLowerCase() === "" 
