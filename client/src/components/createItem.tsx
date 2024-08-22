@@ -2,6 +2,7 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import { GlobalContext } from '../contexts/Home/CHome';
 
 type propType = {
     open: boolean;
@@ -10,6 +11,8 @@ type propType = {
 }
 
 const CreateItem: React.FC<propType> = ({ open, onClose, children }) => {
+
+    const refreshContext = React.useContext(GlobalContext);
 
     const initialValues = {
         name: '',
@@ -33,6 +36,11 @@ const CreateItem: React.FC<propType> = ({ open, onClose, children }) => {
         axios.post('http://localhost:3001/item', values).then(() => {
             alert('Item created')
             resetForm()
+            refreshContext.setContext((prevContext: { refreshCounter: number; }) => ({
+                ...prevContext,
+                refreshCounter: prevContext.refreshCounter + 1,
+              }));            
+            onClose()
         })
     }
 

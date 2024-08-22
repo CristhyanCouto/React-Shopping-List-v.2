@@ -1,17 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ItemCard from "./itemCard";
+import { GlobalContext } from '../contexts/Home/CHome';
+import React from "react";
 
 function App() {
 
   const [data, setData] = useState<any[]>([]);
   const [search, setSearch] = useState<string>("");
 
+  const refreshContext = React.useContext(GlobalContext);
+
   useEffect(() => {
     axios.get("http://localhost:3001/item").then((res) => {
       setData(res.data);
     });
-  }, []);
+  }, [refreshContext.context.refreshCounter]);
 
   const handleGroup = (e: any) => {
     const group = e.target.value;
@@ -19,13 +23,10 @@ function App() {
       axios.get("http://localhost:3001/item").then((res) => {
         setData(res.data);
       });
-      
     } else {
       axios.get(`http://localhost:3001/item/group/${group}`).then((res) => {
         setData(res.data);
-      }
-      );
-    }
+      });}
   };
 
   return (
